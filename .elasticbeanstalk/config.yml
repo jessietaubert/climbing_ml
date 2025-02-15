@@ -5,7 +5,7 @@ branch-defaults:
   master:
     environment: Climbing-prediction-env
 environment-defaults:
-  climbing-prediction-dev:
+  Climbing-prediction-env:
     branch: null
     repository: null
 global:
