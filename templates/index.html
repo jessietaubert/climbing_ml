@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class = "home">
+    <div class = "main-blurb">
+        <h1 class="title-text">Climbing Prediction</h1>
+        {% if prediction %}
+        <div class="prediction">
+            <h3>Prediction: You Climb V{{ prediction }}!</h3>
+        </div>
+        {% endif %}
+        <form method="POST">
+            <div class = "inputs">
+                <div class="input-item">
+                    <label for="body_weight">Body weight (in lbs):</label>
+                    <input type="number" id="body_weight" name="body_weight" value="{{ inputs[0] if inputs is not none else '' }}" required><br><br>
+                </div>
+                <div class="input-item">
+                    <label for="experience">Years Climbing:</label>
+                    <input type="number" id="experience" name="experience" value="{{ inputs[1] if inputs is not none else '' }}" required><br><br>
+                </div>
+                <div class="input-item">
+                    <label for="edge">Smallest Edge 2 Arm Hang for 5 sec (in mm):</label>
+                    <input type="number" id="edge" name="edge" value="{{ inputs[2] if inputs is not none else '' }}" required><br><br>
+                </div>
+                <div class="input-item">
+                    <label for="wp">1 rep max weighted pullup:</label>
+                    <input type="number" id="wp" name="wp" value="{{ inputs[3] if inputs is not none else '' }}" required><br><br>
+                </div>
+                <div class="input-item">
+                    <label for="hours_climbing_training">hours per week spent actively climbing / training:</label>
+                    <input type="number" id="hours_climbing_training" name="hours_climbing_training" value="{{ inputs[4] if inputs is not none else '' }}" required><br><br>
+                </div>
+                <div class="input-item">
+                    <label for="hours_weakness">hours/wk spent working weakness:</label>
+                    <input type="number" id="hours_weakness" name="hours_weakness" value="{{ inputs[5] if inputs is not none else '' }}" required><br><br>
+                </div> 
+                <div class="input-item">
+                    <label for="hours_slab">hours/wk spent working slab:</label>
+                    <input type="number" id="hours_slab" name="hours_slab" value="{{ inputs[6] if inputs is not none else '' }}" required><br><br>
+                </div> 
+                <div class="input-item">
+                    <label for="hours_power">hours/wk spent working power:</label>
+                    <input type="number" id="hours_power" name="hours_power"value="{{ inputs[7] if inputs is not none else '' }}"  required><br><br>
+                </div>
+                <div class="input-item">hours/wk spent on boards:</label>
+                    <input type="number" id="hours_boards" name="hours_boards" value="{{ inputs[8] if inputs is not none else '' }}" required><br><br>
+                </div> 
+                <div class="input-item">
+                    <label for="hours_projecting">hours/wk spent projecting / falling:</label>
+                    <input type="number" id="hours_projecting" name="hours_projecting" value="{{ inputs[9] if inputs is not none else '' }}" required><br><br>
+                </div> 
+                <div class="input-item">
+                    <label for="hours_training">hours/wk spent on supplemental / off-the-wall training:</label>
+                    <input type="number" id="hours_training" name="hours_training" value="{{ inputs[10] if inputs is not none else '' }}" required><br><br>
+                </div>
+                <div class="input-item">
+                    <label for="motivator_num">Motivation (select an option):</label>
+                    <select id="motivator_num" name="motivator_num" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="-1">-1</option>
+                    </select>
+                    <br><br>
+                </div>
+                <div class="bottom-blurb">
+                    <text for="explanation">Select 1 for "for the joy of it," 2 for "to be strong / as a form of exercise," 3 for "socialize / community," 4 for "emotional support," and -1 if none apply.</label>
+                </div>                
+            </div>
+            <div class="model-selection">
+                <label for="model">Select ML Model:</label>
+                <select id="model" name="model">
+                    <option value="elasticNet_train_test">ElasticNet trained with train/test/split</option>
+                    <option value="elasticNet_kfcv">ElasticNet trained with 5-fold cross validation</option>
+                    <option value="xgboost_regression">XGBoost Regression</option>
+                </select>
+            </div>
+            <div class = "btn">
+                <button type="submit">Get Grade Predction!</button>
+            </div>
+        </form>
+       <div class="btn">
+            <a href="{{ url_for('analysis') }}">
+                <button type = "button"> View Analysis</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

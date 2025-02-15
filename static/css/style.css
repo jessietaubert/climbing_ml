@@ -1,0 +1,163 @@
+.home{
+	height: 100%;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    font-family: Courier, monospace;
+    font-weight: 700;
+    font-size: large;
+
+	
+	background-image: url('../images/sunset.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	background-attachment:fixed;
+}
+
+.main-blurb{
+    background-color: rgba(255, 252, 246, 0.4);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    padding: 4%;
+    width: 67%;
+    margin-bottom: 75px;
+}
+
+.title-text{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.input-item {
+    width: 48%; 
+}
+
+label{
+    margin: 5px;
+    display: block;
+}
+
+input[type="number"], select {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: rgba(252, 243, 236, 0.9);
+    font-family: Courier, monospace;
+    font-size: 16px;
+    font-weight: 500;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-width: 2px;
+    border-style: inset;
+}
+
+.bottom-blurb{
+    margin-bottom: 5px;
+}
+
+.model-selection{
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.btn button{
+    justify-content: center;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 16px; 
+	width: 100%;
+    background-color:  rgba(248, 216, 193, 0.5);
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+.btn{
+    margin-bottom: 10px;
+}
+
+.prediction{
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.analysis-home{
+    margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    font-family: Courier, monospace;
+}
+
+.content-container{
+    margin:10px;
+}
+
+.analysis-header{
+    font-size: 1.3em;
+}
+
+.return-button button{
+    padding: 8px;
+	font-size: 16px; 
+    background-color:  rgba(248, 216, 193, 0.5);
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.model-header{
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.analysis-container {
+    margin: auto;
+}
+.model-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: rgba(252, 243, 236, 0.9);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure text and image are spaced correctly */
+.model-text {
+    flex-grow: 1;
+    padding-right: 15px;
+}
+
+.model-image {
+    width: 50%; /* Adjust size */
+    height: auto;
+    border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+    .model-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .model-text {
+        padding-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .model-image {
+        width: 90%;
+        max-width: 350px;
+    }
+}

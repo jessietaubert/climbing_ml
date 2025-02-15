@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class = "analysis-home">
+    <div class = "content-container">
+        <h2 class = "title-text">Project Analysis</h2>
+        <div class = "content">
+            <p>I thoroughly enjoyed working on this project, 
+                which proved to be an incredible learning experience. 
+                It’s easy to think you know what you’re doing until you have very 
+                little guidance and have to test out different ideas to try and 
+                apply the knowledge you’ve learned, which is exactly what I did during this project.
+            </p>
+            <div class = "return-button">
+                <a href="{{ url_for('index') }}">
+                <button type = "button"> Back to Prediction Form</button>
+                </a>
+            </div>
+        </div>
+        <div>
+            <h1 class = "analysis-header">Motivation</h1>
+            <p> In climbing, I have always wondered: what do I need to do to climb harder? There doesn’t seem to be a consensus on that - the answer is always, “It’s different for everyone.” This raised the question, "What makes it different?" When taking a holistic view of climbers, this became clear to me: the climbers who are strong aren’t all the same. Some lift heavier but hang larger edges, some hang smaller edges but lift less. As we continue adding in features, like, “How do you allocate your time climbing?”  the human mind begins to lose perspective, but a machine learning model can pick up these differences and learn the connections. I began to feel my fire for academia returning (something I haven’t felt since I spilt plastic-eating bacteria all over myself in junior year of high school), and I began brainstorming.
+            </p>
+        </div>
+
+        <div>
+            <h1 class = "analysis-header">Brainstorming & Intitial Process</h1>
+            <p> Would I treat this as a classification problem, where each grade is a distinct category, or a regression problem, which aims to find weights for each parameter and models grades in a linear space? I tried both, and found that regression modeled this problem in a much more accurate way. I found my own neural network I attempted to build - a shallow, two-layer network - didn’t model the problem well at all. This lends itself to a big issue I faced: there is not a lot of climbing data publicly accessible, and even less of it has all of the metrics I hoped to use. So, I collected my own data, but this still created a fairly small dataset - one that was relatively low-quality due to uncertainty on some metrics and did not equally represent each grade. There simply was not enough data to accurately train a deep neural network - it overfit every time.
+            </p>
+            <p>
+            I pivoted to built-in python libraries, which gave me exposure to real applications of all the theory I have learned. I learned about GridSearch - which tunes parameters for a model rather than me trying different values by hand. In developing the UI, I learned how to use Flask, a python library which allows for python scripts to be run and interact with a web frontend.
+            </p>
+        </div>
+
+        <div>
+            <h1 class = "analysis-header">General Analysis</h1>
+            <p>
+                The most effective three models had between 87-91% accuracy, which got me super excited! All models place the most importance on edge size and max weighted pull up. Experience was typically the next important feature, and the hour breakdowns were less important. The hours spent on boards tended to be the next important feature, right next to overall hours per week spent climbing and training. Interestingly, some models penalized the grade based on hours spent on slab - since most of the stronger climbers spend less time on slab. This highlights the fact that this project answers the question of “What are strong climbers doing to be strong?” rather than “What will make me stronger or a better climber?”
+            </p>
+        </div>
+
+        <div class="analysis-container">
+            <h1 class="analysis-header">Model Breakdowns</h1>
+        
+            <div class="model-container">
+                <div class="model-text">
+                    <p class="model-header">ElasticNet with Train Test Split</p>
+                    <p>Best parameters: {'alpha': 0.1668, 'l1_ratio': 0.1}<br>
+                        Mean Squared Error: 0.8777<br>
+                        R-squared: 0.8835<br>
+                        Accuracy: 88.35%
+                    </p>
+                </div>
+                <img src="static/images/enet_tts.png" alt="ElasticNet Train Test Split" class="model-image">
+                </div>
+            </div>
+        
+            <div class="model-container">
+                <div class="model-text">
+                    <p class="model-header">ElasticNet with KFold Cross-Validation</p>
+                    <p>Best parameters: {'alpha': 0.0599, 'l1_ratio': 0.5}<br>
+                        R-squared: 0.7382<br>
+                        Accuracy: 87.74%
+                    </p>
+                </div>
+                <img src="static/images/enet_kfcv.png" alt="ElasticNet KFold" class="model-image">
+            </div>
+        
+            <div class="model-container">
+                <div class="model-text">
+                    <p class="model-header">XGBoost Regression</p>
+                    <p>Best parameters: {'learning_rate': 0.1, 'max_depth': 2, 'n_estimators': 50}<br>
+                        Mean Absolute Error: 0.6523<br>
+                        R-squared: 0.9083                             
+                    </p>
+                </div>
+                <img src="static/images/xgbreg.png" alt="XGBoost Regression" class="model-image">
+            </div>
+        </div>
+
+    </div>
+
+</body>
