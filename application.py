@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import joblib
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 # Load pre-trained models and scaler
 models = {
