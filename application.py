@@ -13,11 +13,11 @@ models = {
 }
 scaler = joblib.load("scaler.pkl")
 
-@app.route('/analysis')
+@application.route('/analysis')
 def analysis():
     return render_template('analysis.html')
 
-@app.route("/", methods=["GET", "POST"])
+@application.route("/", methods=["GET", "POST"])
 def index():
     prediction = None
     inputs = None
@@ -75,4 +75,4 @@ def index():
     return render_template("index.html", prediction = prediction, inputs = inputs)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
