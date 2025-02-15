@@ -21,21 +21,6 @@
                 <button type = "button"> Back to Prediction Form</button>
                 </a>
             </div>
-        </div>
-        <div>
-            <h1 class = "analysis-header">Motivation</h1>
-            <p> In climbing, I have always wondered: what do I need to do to climb harder? There doesn’t seem to be a consensus on that - the answer is always, “It’s different for everyone.” This raised the question, "What makes it different?" When taking a holistic view of climbers, this became clear to me: the climbers who are strong aren’t all the same. Some lift heavier but hang larger edges, some hang smaller edges but lift less. As we continue adding in features, like, “How do you allocate your time climbing?”  the human mind begins to lose perspective, but a machine learning model can pick up these differences and learn the connections. I began to feel my fire for academia returning (something I haven’t felt since I spilt plastic-eating bacteria all over myself in junior year of high school), and I began brainstorming.
-            </p>
-        </div>
-
-        <div>
-            <h1 class = "analysis-header">Brainstorming & Intitial Process</h1>
-            <p> Would I treat this as a classification problem, where each grade is a distinct category, or a regression problem, which aims to find weights for each parameter and models grades in a linear space? I tried both, and found that regression modeled this problem in a much more accurate way. I found my own neural network I attempted to build - a shallow, two-layer network - didn’t model the problem well at all. This lends itself to a big issue I faced: there is not a lot of climbing data publicly accessible, and even less of it has all of the metrics I hoped to use. So, I collected my own data, but this still created a fairly small dataset - one that was relatively low-quality due to uncertainty on some metrics and did not equally represent each grade. There simply was not enough data to accurately train a deep neural network - it overfit every time.
-            </p>
-            <p>
-            I pivoted to built-in python libraries, which gave me exposure to real applications of all the theory I have learned. I learned about GridSearch - which tunes parameters for a model rather than me trying different values by hand. In developing the UI, I learned how to use Flask, a python library which allows for python scripts to be run and interact with a web frontend. I also configured gunicorn and nginx with an AWS EC2 instance to deploy this webpage, which was a headache and great exposure!
-            </p>
-        </div>
 
         <div>
             <h1 class = "analysis-header">General Analysis</h1>
@@ -44,6 +29,14 @@
             </p>
             <p>
                 Since the strength-related metrics are weighted more heavily, it would be interesting to see how collecting similar metrics impacts the performace of the models: for example, max weight for a 15mm edge hang. It would also be interesting to look into how different standardization techniques could impact the models, especially for the weighted pullup percentage that is computed.
+            </p>
+            <h1 class = "analysis-header">Technical Analysis</h1>
+            <p>
+                The R-square value tells us how well the variance in the data is explained by the model, where a value closer to 1 indicates a better explanation of the variance and thus a better fit of the data. The XGBoost regression model has the highest R-squared value of 0.9, indicating the best fit.
+            </p>
+            <p>
+                The error observed in the models comes from a few factors. In designing the data collection form, it became clear some metrics would be estimates rather than exact, known values. The method of sending out a form to collect responses rather than conducting in-person measurements limited the questions that could be asked to maximize ease of response. Additionally, it is likely that a bit of sample bias came into play,
+                 as there was an uneven distribution of grades in the collected data. While 25 respondants of the 160 collected responses indicated the grade V8, only 5 indicated V11. This means that climbers in the V5-V10 range can be fairly confident in the model prediction, but it becomes increasingly challenging to predict the ends of the grade range.
             </p>
         </div>
 
@@ -85,7 +78,22 @@
                 <img src="static/images/xgbreg.png" alt="XGBoost Regression" class="model-image">
             </div>
         </div>
+            <h2 class = "title-text">Reflection</h2>
+            <div>
+                <h1 class = "analysis-header">Motivation</h1>
+                <p> In climbing, I have always wondered: what do I need to do to climb harder? There doesn’t seem to be a consensus on that - the answer is always, “It’s different for everyone.” This raised the question, "What makes it different?" When taking a holistic view of climbers, this became clear to me: the climbers who are strong aren’t all the same. Some lift heavier but hang larger edges, some hang smaller edges but lift less. As we continue adding in features, like, “How do you allocate your time climbing?”  the human mind begins to lose perspective, but a machine learning model can pick up these differences and learn the connections. I began to feel my fire for academia returning (something I haven’t felt since I spilt plastic-eating bacteria all over myself in junior year of high school), and I began brainstorming.
+                </p>
+            </div>
 
+            <div>
+                <h1 class = "analysis-header">Brainstorming & Intitial Process</h1>
+                <p> Would I treat this as a classification problem, where each grade is a distinct category, or a regression problem, which aims to find weights for each parameter and models grades in a linear space? I tried both, and found that regression modeled this problem in a much more accurate way. I found my own neural network I attempted to build - a shallow, two-layer network - didn’t model the problem well at all. This lends itself to a big issue I faced: there is not a lot of climbing data publicly accessible, and even less of it has all of the metrics I hoped to use. So, I collected my own data, but this still created a fairly small dataset - one that was relatively low-quality due to uncertainty on some metrics and did not equally represent each grade. There simply was not enough data to accurately train a deep neural network - it overfit every time.
+                </p>
+                <p>
+                I pivoted to built-in python libraries, which gave me exposure to real applications of all the theory I have learned. I learned about GridSearch - which tunes parameters for a model rather than me trying different values by hand. In developing the UI, I learned how to use Flask, a python library which allows for python scripts to be run and interact with a web frontend. I also configured gunicorn and nginx with an AWS EC2 instance to deploy this webpage, which required a lot of debugging but was great exposure!
+                </p>
+            </div>
+        </div>
     </div>
 
 </body>
