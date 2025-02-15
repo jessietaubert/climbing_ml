@@ -3,9 +3,13 @@ branch-defaults:
     environment: null
     group_suffix: null
   master:
-    environment: climbing-prediction-dev
+    environment: Climbing-prediction-env
+environment-defaults:
+  climbing-prediction-dev:
+    branch: null
+    repository: null
 global:
-  application_name: climbing_prediction
+  application_name: climbing-prediction
   branch: null
   default_ec2_keyname: null
   default_platform: Python 3.13 running on 64bit Amazon Linux 2023
