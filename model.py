@@ -22,18 +22,20 @@ def data_cleaning():
     data = data.drop(['wp'], axis = 1)
 
     ## turn motivation into number
-    data['motivator_num'] = -1
-    for idx, row in data.iterrows():
-        if row['motivation'] == 'for the joy of it':
-            data.loc[idx, 'motivator_num'] = 0
-        elif row['motivation'] == 'to be strong / as a form of exercise':
-            data.loc[idx, 'motivator_num'] = 1
-        elif row['motivation'] == 'socialize / community':
-            data.loc[idx, 'motivator_num'] = 2
-        elif row['motivation'] == 'emotional support':
-            data.loc[idx, 'motivator_num'] = 3
+    # data['motivator_num'] = -1
+    # for idx, row in data.iterrows():
+    #     if row['motivation'] == 'for the joy of it':
+    #         data.loc[idx, 'motivator_num'] = 0
+    #     elif row['motivation'] == 'to be strong / as a form of exercise':
+    #         data.loc[idx, 'motivator_num'] = 1
+    #     elif row['motivation'] == 'socialize / community':
+    #         data.loc[idx, 'motivator_num'] = 2
+    #     elif row['motivation'] == 'emotional support':
+    #         data.loc[idx, 'motivator_num'] = 3
+    ## one-hot encode motivation
+    data = pd.get_dummies(data, columns=['motivation'], prefix='motivation')
 
-    data = data.drop(['motivation'], axis=1)
+    #data = data.drop(['motivation'], axis=1)
     data['experience'] = data['experience'].str.split(" ").str[0].astype(float)
 
     # pull out labels
